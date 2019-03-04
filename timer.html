@@ -10,6 +10,7 @@
             justify-items: center;
             width: 100%;
             height: 100vh;
+            background-color: aquamarine;
         }
 
         #app {
@@ -17,8 +18,8 @@
             width: 200px;
             height: 150px;
             display: flex;
-            color: whitesmoke;
-            background: #d3d3d3;
+            color: #6d6d6d;
+            background: #ffffff;
             border-radius: 2px;
             box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
             margin: auto;
@@ -27,16 +28,44 @@
             justify-items: center;
 
         }
+        .button{
+            text-align: center;
+            width: 50px;
+            height: 20px;
+            margin: 2px;
+            border-width: 0;
+            outline: none;
+            border-radius: 2px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+            background-color: #2ecc71;
+            color: #ecf0f1;
+
+            transition: background-color .3s;
+        }
         .primary{
             background-color: #3e74ff;
+
         }
+
+        .primary:active, .primary:hover {
+            background-color: #2f5bb6;
+        }
+
 
         .start {
             background-color: #40b976;
         }
 
+        .start:active, .start:hover{
+            background-color: #348b54;
+        }
+
         .danger {
             background-color: #b92228;
+        }
+
+        .danger:active, .danger:hover{
+            background-color: #7d1f20;
         }
     </style>
 </head>
@@ -44,16 +73,16 @@
 <div id="app">
     <h1>{{timer}}</h1>
     <div class="button-group">
-        <button class="danger" v-on:click="stop">Stop</button>
-        <button class="start" v-on:click="start">Start</button>
-        <button class="primary" v-on:click="reset">Reset</button>
+        <button class="button danger" v-on:click="stop">Stop</button>
+        <button class="button start" v-on:click="start">Start</button>
+        <button class="button primary" v-on:click="reset">Reset</button>
     </div>
 </div>
 
 </body>
 
 <script>
-    var socket = io.connect('http://localhost:8000');
+    var socket = io.connect();
 
     function startTimer() {
         socket.on('stream', function (data) {

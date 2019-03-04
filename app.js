@@ -15,7 +15,7 @@ var server = http.createServer(function (request, response) {
             fs.readFile(__dirname + path, function (error, data) {
                 if (error) {
                     response.writeHead(404);
-                    response.write("opps this doesn't exist - 404");
+                    response.write("oops this doesn't exist - 404");
                     response.end();
                 } else {
                     response.writeHead(200, {"Content-Type": "text/html"});
@@ -26,7 +26,7 @@ var server = http.createServer(function (request, response) {
             break;
         default:
             response.writeHead(404);
-            response.write("opps this doesn't exist - 404");
+            response.write("oops this doesn't exist - 404");
             response.end();
             break;
     }
