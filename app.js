@@ -1,7 +1,6 @@
 var http = require("http");
 var url = require('url');
 var fs = require('fs');
-var io = require('socket.io').listen(server);
 
 
 var server = http.createServer(function (request, response) {
@@ -37,6 +36,7 @@ server.listen(8000);
 
 var stop = false;
 var timer = 0;
+var io = require('socket.io').listen(server);
 
 function startTimer() {
     setInterval(function () {

@@ -3,19 +3,57 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        #app {
+            font-family: sans-serif;
+            width: 200px;
+            height: 150px;
+            display: flex;
+            color: whitesmoke;
+            background: #d3d3d3;
+            border-radius: 2px;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            margin: auto;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+
+        }
+        .primary{
+            background-color: #3e74ff;
+        }
+
+        .start {
+            background-color: #40b976;
+        }
+
+        .danger {
+            background-color: #b92228;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
     <h1>{{timer}}</h1>
-    <button v-on:click="stop">Stop</button>
-    <button v-on:click="start">Start</button>
-    <button v-on:click="reset">Reset</button>
+    <div class="button-group">
+        <button class="danger" v-on:click="stop">Stop</button>
+        <button class="start" v-on:click="start">Start</button>
+        <button class="primary" v-on:click="reset">Reset</button>
+    </div>
 </div>
 
 </body>
 
 <script>
-    var socket = io.connect();
+    var socket = io.connect('http://localhost:8000');
 
     function startTimer() {
         socket.on('stream', function (data) {
