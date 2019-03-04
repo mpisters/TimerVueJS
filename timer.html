@@ -18,9 +18,7 @@
     var socket = io.connect();
 
     function startTimer() {
-        console.log("is this reached?")
         socket.on('stream', function (data) {
-            console.log("data", data)
             app.timer = data.timer;
         });
     }

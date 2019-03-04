@@ -1,6 +1,9 @@
 var http = require("http");
 var url = require('url');
 var fs = require('fs');
+var io = require('socket.io').listen(server);
+
+
 var server = http.createServer(function (request, response) {
     var path = url.parse(request.url).pathname;
     switch (path) {
@@ -29,9 +32,9 @@ var server = http.createServer(function (request, response) {
             break;
     }
 });
+
 server.listen(8000);
 
-var io = require('socket.io').listen(server);
 var stop = false;
 var timer = 0;
 
