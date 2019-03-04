@@ -10,6 +10,7 @@ The timer has 3 functions:
 * Make sure that NPM works
 * Clone the project and run `npm install` in the terminal
 * Run the app by executing `node app.js`
+* App runs on localhost:8000
 
 ## ToDo List
 * Create separate files: 1 for css, 2 javascript files (1 VueJS file, 1 serverfile), 1 for html
