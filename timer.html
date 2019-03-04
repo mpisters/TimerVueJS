@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{timer}}</h1>
+    <button v-on:click="stop">Stop</button>
+    <button v-on:click="start">Start</button>
+    <button v-on:click="reset">Reset</button>
+</div>
+
+</body>
+
+<script>
+    var socket = io.connect();
+
+    function startTimer() {
+        console.log("is this reached?")
+        socket.on('stream', function (data) {
+            console.log("data", data)
+            app.timer = data.timer;
+        });
+    }
+
+    startTimer();
+    var app = new Vue({
+        el: "#app",
+        data: {
+            timer: 0
+        },
+        methods: {
+            stop: function () {
+                socket.emit('stop')
+            },
+            start: function () {
+                socket.emit('start')
+            },
+            reset: function () {
+                socket.emit('reset')
+            }
+        }
+    })
+</script>
+</html>
